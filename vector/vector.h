@@ -7,23 +7,14 @@
  * 1) How can we allow a type that is specified at run time? (Like T)
  * 2) How can we allow an assortment of different types? (Like Python or JavaScript)
  * */
-typedef struct Vector {
-  // The pointer to the first block of memory of this array.
-  int *array;
-
-  // The number of elements in the array.
-  int length;
-
-  // The maximum number of elements in the array.
-  int capacity;
-} Vector;
+typedef struct Vector Vector;
 
 // Gets the number of elements in the vector.
-int size();
+int size(Vector* v);
 
 // Gets the maximum number of elements the vector
 // can hold.
-int capacity();
+int capacity(Vector* v);
 
 
 /*
