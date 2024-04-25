@@ -16,6 +16,13 @@ int size(Vector* v);
 // can hold.
 int capacity(Vector* v);
 
+/**
+ * Checks if a Vector has any
+ * elements at all.
+ * 1 = has elements.
+ * 0 = has no elements.
+ */
+int is_empty(Vector* v);
 
 /*
  * Creates a new vector.
@@ -27,7 +34,17 @@ Vector* alloc_vector();
  * */
 void push(Vector* v, int item);
 
+/**
+ * Gets the value at the index.
+ */
+int at(Vector* v, int index);
+
 /*
  * Prints the contents of a vector.
  * */
 void print_elements(Vector* v);
+
+/**
+ * Use this for testing.
+ */
+void foo(Vector* v);

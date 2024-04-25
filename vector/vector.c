@@ -16,6 +16,7 @@ typedef struct Vector {
   int capacity;
 } Vector;
 
+void resize_lengthen(Vector* v);
 
 Vector* alloc_vector() {
   int* arr = malloc(sizeof(int) * STARTING_CAPACITY);
@@ -37,13 +38,24 @@ int capacity(Vector *v) {
   return v->capacity;
 }
 
+int is_empty(Vector* v) {
+  return v->length == 0 ? 0 : 1;
+}
+
 void push(Vector* v, int item) {
   if (v->capacity == v->length) {
-    printf("[Vector] The vector is full. Cannot add item to list\n");
-    return;
+    resize_lengthen(v);
   }
   v->array[v->length] = item;
   v->length++;
+}
+
+int at(Vector* v, int index) {
+  if (index < 0 || index > v->capacity - 1) {
+    printf("[Vector] ERROR: INDEX OUT OF BOUNDS.\n");
+    return -1;
+  }
+  return v->array[index];
 }
 
 void print_elements(Vector *v) {
@@ -51,4 +63,31 @@ void print_elements(Vector *v) {
     printf("[%d] ", v->array[i]);
   }
   printf("\n");
+}
+
+void foo(Vector* v) {
+  resize_lengthen(v);
+}
+
+/**
+  * Doubles the size of the array.
+  */
+void resize_lengthen(Vector* v) {
+  int* pArr = malloc(sizeof(int) * v->capacity * 2);
+  if (pArr == NULL) {
+    printf("[Vector] could not allocate memory for a new array\n");
+    exit(1);
+  }
+
+  for (int i = 0; i < v->length; i++) {
+    pArr[i] = v->array[i];
+  }
+
+  free(v->array);
+
+  v->array = pArr;
+  v->capacity = v->capacity *= 2;
+}
+
+void resize_shorten(Vector* v) {
 }
