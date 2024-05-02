@@ -4,7 +4,7 @@
 #include <assert.h>
 #include "vector.h"
 
-int main() {
+int main(void) {
   printf("Hello, vector\n");
 
   Vector* my_vector = alloc_vector();

@@ -90,4 +90,18 @@ void resize_lengthen(Vector* v) {
 }
 
 void resize_shorten(Vector* v) {
+  int* pArr = malloc(sizeof(int) * v->capacity / 4);
+  if (pArr == NULL) {
+    printf("[Vector] could not allocate memory for a new array\n");
+    exit(1);
+  }
+
+  for (int i = 0; i < v->length; i++) {
+    pArr[i] = v->array[i];
+  }
+
+  free(v->array);
+
+  v->array = pArr;
+  v->capacity = v->capacity /= 4;
 }
